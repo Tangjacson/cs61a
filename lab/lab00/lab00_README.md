@@ -6,6 +6,6 @@ By the end of this lab, you should have submitted the lab with python3 ok --subm
 This lab explains how to use your own computer to complete assignments for CS 61A, as well as introduce some of the basics of Python. If you are using a lab computer, most of the instructions are the same, except you won't have to install anything.
 If you need any help at any time through the lab, please feel free to come to office hours or post on piazza.
 This lab looks really long, but it's mostly setup and learning how to use essential tools for this class; these may seem a bit difficult now, but quickly become second nature as we move further into the course.
-referred from https://cs61a.org/lab/lab00/
 # lab00.zip download
 links https://cs61a.org/lab/lab00/lab00.zip
+# referred from https://cs61a.org/lab/lab00/
