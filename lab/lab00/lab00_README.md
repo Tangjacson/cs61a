@@ -7,3 +7,5 @@ This lab explains how to use your own computer to complete assignments for CS 61
 If you need any help at any time through the lab, please feel free to come to office hours or post on piazza.
 This lab looks really long, but it's mostly setup and learning how to use essential tools for this class; these may seem a bit difficult now, but quickly become second nature as we move further into the course.
 referred from https://cs61a.org/lab/lab00/
+# lab00.zip download
+links https://cs61a.org/lab/lab00/lab00.zip
