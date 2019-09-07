@@ -7,92 +7,82 @@ test = {
         {
           'code': r"""
           >>> is_swap(2, 4)
-          d763fd836a7bfb096222e985b161b406
-          # locked
+          False
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(22, 4)
-          d763fd836a7bfb096222e985b161b406
-          # locked
+          False
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(28, 4)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(124, 2)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(44, 28)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(2, 0)
-          d763fd836a7bfb096222e985b161b406
-          # locked
+          False
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(10, 0)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(100, 10)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(14, 2)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> is_swap(27, 72)
-          bc6c4798917b91886d7fa5f56e42878f
-          # locked
+          True
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""

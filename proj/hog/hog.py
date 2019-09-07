@@ -22,18 +22,25 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
-    n=1
     i=0
-    outcomes[10]
-    while n < num_rolls:
-        outcomes[i]=six_sided()
+    score=0
+    outcomes=[0]*num_rolls
+    while i < num_rolls:
+        outcomes[i]=dice()
         i+=1
+
+    n=0
+    while n<num_rolls:
+        if(outcomes[n]==1):
+            score=1
+            break
+        else:
+            score+=outcomes[n]
         n+=1
-    if(outcomes.find(1)):
-        return 1
-    else:
-        return sum(outcomes)
-    # END PROBLEM 1
+    return score
+
+
+                # END PROBLEM 1
 
 
 def free_bacon(score):
@@ -44,6 +51,15 @@ def free_bacon(score):
     assert score < 100, 'The game should be over.'
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    from operator import floordiv,mod
+    if score<10:
+        points=10
+    else:
+        ones_digit=mod(score,10)
+        tens_digit=floordiv(score,10)
+        min_digit=min(ones_digit,tens_digit)
+        points=10-min_digit
+    return points
     # END PROBLEM 2
 
 
@@ -62,6 +78,11 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert opponent_score < 100, 'The game should be over.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls==0:
+        points=free_bacon(opponent_score)
+    else:
+        points=roll_dice(num_rolls,dice)
+    return points
     # END PROBLEM 3
 
 
@@ -71,6 +92,25 @@ def is_swap(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
+    from operator import mod,floordiv
+    i=-1
+    p_digits=[0]*10
+    o_digits=[0]*10
+    while player_score>=1:
+        i+=1
+        p_digits[i]=mod(player_score,10)
+        player_score=floordiv(player_score,10)
+    p_mul=p_digits[0]*p_digits[i]
+    n=-1
+    while opponent_score>=1:
+        n+=1
+        o_digits[n]=mod(opponent_score,10)
+        opponent_score=floordiv(opponent_score,10)
+    o_mul=o_digits[0]*o_digits[n]
+    if o_mul==p_mul:
+        return True
+    else:
+        return False
     # END PROBLEM 4
 
 
@@ -111,6 +151,12 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     player = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    if player=0:
+        score=score0
+        opponent=score1
+        points0=roll_dice(strat0,dice)
+        score0=score0+points0
+        if(is_swap())
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
