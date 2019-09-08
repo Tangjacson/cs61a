@@ -9,42 +9,36 @@ test = {
           >>> # example 1
           >>> s0, s1 = hog.play(lambda score, other: (score + 3) // 4 * 2 + 3, lambda score, other: 4 - other // 4 * 2, score0=0, score1=0, goal=10, dice=always_one)
           >>> s0
-          872dbe4a4fe5d8451aa842c21194c866
-          # locked
+          9
           >>> s1
-          b9f8886ee7ddbc03b40d55a3c1b576e2
-          # locked
+          18
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> # example 2
           >>> s0, s1 = hog.play(always(2), always(1), score0=0, score1=0, goal=5, dice=hog.make_test_dice(2, 2))
           >>> s0
-          c42887e7b9ffe8fc26bb57b61329f916
-          # locked
+          7
           >>> s1
-          962aea5f59fc55bd65ccacf4603c8f22
-          # locked
+          0
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           >>> # swap after feral hogs
           >>> s0, s1 = hog.play(always(2), always(1), score0=45, score1=5, goal=50, dice=hog.make_test_dice(5, 2))
           >>> s0
-          26f5762c932a578994ea1c8fc7fa6c02
-          # locked
+          5
           >>> s1
-          4541999a7580ea23f52926ad2c0bfc02
-          # locked
+          55
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': True,

@@ -2,3 +2,5 @@
 'Question 2-correct', (512, 70)
 'Question 3-correct', (1024, 70)
 'Question 4-correct', (1536, 70)
+'Question 5a-correct', (2048, 70)
+'Question 5b-correct', (2560, 70)

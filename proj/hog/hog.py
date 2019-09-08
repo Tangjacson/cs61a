@@ -151,12 +151,43 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     player = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
-    if player=0:
-        score=score0
-        opponent=score1
-        points0=roll_dice(strat0,dice)
-        score0=score0+points0
-        if(is_swap())
+    num_rolls0=[0]*1000
+    num_rolls1=[0]*1000
+    i=1
+    n=1
+    while(score0<goal and score1<goal):
+        if player==0:
+            num_rolls0[i]=strategy0(score0,score1)
+            if(abs(num_rolls0[i]-num_rolls0[i-1])==2):
+                points=take_turn(num_rolls0[i], score1, dice)+3
+                score0=points+score0
+            else:
+                points=take_turn(num_rolls0[i], score1, dice)
+                score0=points+score0
+            if(is_swap(score0,score1)):
+                temp=score0
+                score0=score1
+                score1=temp
+            player=other(player)
+            i+=1
+            continue
+
+        else :
+            num_rolls1[n]=strategy1(score1,score0)
+            if(abs(num_rolls1[n]-num_rolls1[n-1])==2):
+                points=take_turn(num_rolls1[n],score0,dice)+3
+                score1=points+score1
+            else:
+                points=take_turn(num_rolls1[n],score0,dice)
+                score1=points+score1
+            if(is_swap(score0,score1)):
+                temp=score0
+                score0=score1
+                score1=temp
+            player=other(player)
+            n+=1
+            continue
+
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
