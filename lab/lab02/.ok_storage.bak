@@ -1,1 +1,6 @@
 'lambda_curry2-correct', (0, 70)
+'Lambda the Free-correct', (512, 70)
+'HOF-correct', (1024, 70)
+'count_cond-correct', (1536, 70)
+'composite_identity-correct', (2048, 70)
+'cycle-correct', (2560, 70)

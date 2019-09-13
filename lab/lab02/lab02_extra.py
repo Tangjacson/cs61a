@@ -36,6 +36,7 @@ def composite_identity(f, g):
     False
     """
     "*** YOUR CODE HERE ***"
+    return lambda x:compose1(f,g)(x)==compose1(g,f)(x)
 
 def cycle(f1, f2, f3):
     """Returns a function that is itself a higher-order function.
@@ -64,3 +65,20 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
+    def function(n):
+        f0=lambda x:x
+        if n==0:
+            f=f0
+        else:
+            i=1
+            f=f0
+            while 0<i<=n:
+                if(i%3==1):
+                    f=compose1(f1,f)
+                elif(i%3==2):
+                    f=compose1(f2,f)
+                else:
+                    f=compose1(f3,f)
+                i+=1
+        return f
+    return function
