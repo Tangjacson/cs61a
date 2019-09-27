@@ -1,2 +1,2 @@
 # cs61afall19
-This project will included the all work done during the Berkeley famous course CS61A, sorry for latness cause busyness.
+This project will include all the work published on the websit cs61a.org the berkeley famous course cs61a structure and Intepretation of computer program, update simultaniously with the due.
