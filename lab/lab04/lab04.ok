@@ -1,0 +1,27 @@
+{
+    "name": "Lab 4",
+    "endpoint": "cal/cs61a/fa19/lab04",
+    "src": [
+        "lab04.py"
+    ],
+    "tests": {
+        "lab04.py": "doctest",
+        "tests/indexing.py": "ok_test"
+    },
+    "default_tests": [
+        "skip_add",
+        "summation",
+        "gcd",
+        "indexing",
+        "couple",
+        "enumerate"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "analytics",
+        "unlock",
+        "grading",
+        "backup"
+    ]
+}
