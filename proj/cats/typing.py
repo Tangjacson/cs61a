@@ -149,37 +149,65 @@ def swap_diff(start, goal, limit):
 def edit_diff(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
     #assert False, 'Remove this line'
-    if i>limit: # Fill in the condition
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        return i
-        # END
 
-    elif start[i]==goal[i]: # Feel free to remove or add additional cases
+
+    if limit==0: # Fill in the condition
         # BEGIN
         "*** YOUR CODE HERE ***"
-        return edit_diff(start,goal,limit)
+        if goal=='':
+            if start=='':
+                return 0
+            else:
+                return 1
+        elif start=='':
+            return 1
+        elif start[0]==goal[0]:
+            return edit_diff(start[1:],goal[1:],limit)
+        else:
+            return 1
+        # END
+    elif goal=='' :
+        if start=='':
+            return 0
+        else:
+            start=start[1:]
+            return edit_diff(start,goal,limit-1)+1
+    elif start=='':
+            goal=goal[1:]
+            return edit_diff(start,goal,limit-1)+1
+    elif start[0]==goal[0]: # Feel free to remove or add additional cases
+        # BEGIN
+        "*** YOUR CODE HERE ***"
+        return edit_diff(start[1:],goal[1:],limit)
         # END
 
     else:
-        add_diff = autocorrect(goal[i]+start,goal,limit)  # Fill in these lines
-        remove_diff = autocorrect(start-start[i],goal,limit)
-        substitute_diff = autocorrect(start[i]=goal[i],goal,limit)
+        add_diff = goal[0]+start # Fill in these lines
+        #print(add_diff)
+        remove_diff = start[1:]
+        substitute_diff = goal[0]+start[1:]
         # BEGIN
         "*** YOUR CODE HERE ***"
-        a=min(add_diff,remove_diff,substitute_diff)
-        if add_diff==a:
-            return edit_diff(goal[i]+start,goal,limit)+1,i+1
-        elif remove_diff==a:
-            return edit_diff(start-start[i],goal,limit)+1,i+1
+        def Accuracy(x,y):
+            n=min(len(x),len(y))
+            return sum([1 for i in range(n) if x[i]==y[i]])/max(len(x),len(y))
+        a=[Accuracy(add_diff,goal),Accuracy(remove_diff,goal),Accuracy(substitute_diff,goal)]
+        max_a=max(a)
+        if a[0]==max_a:
+            return edit_diff(start,goal[1:],limit-1)+1
+        elif a[1]==max_a:
+            return edit_diff(start[1:],goal,limit-1)+1
         else:
-            return edit_diff(start[i]=goal[i],goal,limit)+1,i+1
+            return edit_diff(start[1:],goal[1:],limit-1)+1
         # END
 
 
 def final_diff(start, goal, limit):
     """A diff function. If you implement this function, it will be used."""
-    assert False, 'Remove this line to use your final_diff function'
+    #assert False, 'Remove this line to use your final_diff function'
+    return autocorrect(start,goal,edit_diff,limit)
+
+
 
 
 
