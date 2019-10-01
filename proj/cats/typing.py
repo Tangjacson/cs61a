@@ -125,18 +125,23 @@ def swap_diff(start, goal, limit):
     """
     # BEGIN PROBLEM 6
     #assert False, 'Remove this line'
-    difference=0
     length=min(len(start),len(goal))
-    def diff(n):
-        if n<length:
+    def diff(n,h):
+        if n<length-1 and h<limit:
             if start[n]==goal[n]:
-                return diff(n+1)
+                return diff(n+1,h)
             else:
-                return diff(n+1)+1
+                return diff(n+1,h+1)
         else:
-            return 0
-    return diff(0)+abs(len(start)-len(goal))
-        
+            if start[n]==goal[n]:
+                if n==length-1:
+                    return h
+                else:
+                    return diff(n+1,h)
+            else:
+                return h+1
+    return diff(0,0)+abs(len(start)-len(goal))
+
 
 
     # END PROBLEM 6
