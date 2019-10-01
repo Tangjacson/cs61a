@@ -101,6 +101,20 @@ def autocorrect(user_word, valid_words, diff_function, limit):
     """
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    if  user_word in valid_words:
+        return user_word
+    u=[]
+    mean_difference_index=0
+    val_words_r=[word for word in valid_words if diff_function(user_word,word,limit)<=limit]
+    if len(val_words_r)==0:
+        return user_word
+    else:
+        difference=[diff_function(user_word,word,limit) for word in val_words_r]
+        for n in range(len(difference)):
+            if difference[n]==min(difference):
+                mean_difference_index=n
+                break
+        return val_words_r[mean_difference_index]
     # END PROBLEM 5
 
 
@@ -111,6 +125,7 @@ def swap_diff(start, goal, limit):
     """
     # BEGIN PROBLEM 6
     assert False, 'Remove this line'
+    
     # END PROBLEM 6
 
 def edit_diff(start, goal, limit):
