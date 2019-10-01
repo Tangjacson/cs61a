@@ -127,12 +127,16 @@ def swap_diff(start, goal, limit):
     #assert False, 'Remove this line'
     difference=0
     length=min(len(start),len(goal))
-    for i in range(length):
-        if(start[i]==goal[i]):
-           continue
+    def diff(n):
+        if n<length:
+            if start[n]==goal[n]:
+                return diff(n+1)
+            else:
+                return diff(n+1)+1
         else:
-            difference+=1
-    return difference+abs(len(start)-len(goal))
+            return 0
+    return diff(0)+abs(len(start)-len(goal))
+        
 
 
     # END PROBLEM 6
