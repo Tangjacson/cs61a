@@ -124,17 +124,17 @@ def swap_diff(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
-    if len(start)<len(goal):
-        return len(goal)-len(start)
-    for i in range(len(start)):
+    #assert False, 'Remove this line'
+    difference=0
+    length=min(len(start),len(goal))
+    for i in range(length):
         if(start[i]==goal[i]):
            continue
         else:
             difference+=1
-            start[i]=goal[i]
-    return difference
-        
+    return difference+abs(len(start)-len(goal))
+
+
     # END PROBLEM 6
 
 def edit_diff(start, goal, limit):
