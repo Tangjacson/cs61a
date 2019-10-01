@@ -125,7 +125,16 @@ def swap_diff(start, goal, limit):
     """
     # BEGIN PROBLEM 6
     assert False, 'Remove this line'
-    
+    if len(start)<len(goal):
+        return len(goal)-len(start)
+    for i in range(len(start)):
+        if(start[i]==goal[i]):
+           continue
+        else:
+            difference+=1
+            start[i]=goal[i]
+    return difference
+        
     # END PROBLEM 6
 
 def edit_diff(start, goal, limit):
