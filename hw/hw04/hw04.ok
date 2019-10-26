@@ -1,0 +1,32 @@
+{
+    "name": "Homework 4",
+    "endpoint": "cal/cs61a/fa19/hw04",
+    "src": [
+        "hw04.py"
+    ],
+    "tests": {
+        "hw04.py": "doctest",
+        "tests/interval.py": "ok_test",
+        "tests/sub_interval.py": "ok_test",
+        "tests/div_interval.py": "ok_test",
+        "tests/mul_interval.py": "ok_test"
+    },
+    "default_tests": [
+        "taxicab",
+        "replace_leaf",
+        "total_weight",
+        "balanced",
+        "totals_tree",
+        "make_fib",
+        "make_withdraw",
+        "make_joint"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
