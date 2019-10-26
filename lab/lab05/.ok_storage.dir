@@ -3,3 +3,4 @@
 'check_abstraction-correct', (1024, 70)
 'acorn_finder-correct', (1536, 70)
 'add_chars-correct', (2048, 70)
+'sprout_leaves-correct', (2560, 70)

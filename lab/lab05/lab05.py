@@ -190,14 +190,9 @@ def sprout_leaves(t, vals):
           2
     """
     "*** YOUR CODE HERE ***"
-    def helper(t,vals):
-        for i in t:
-            print(i)
-            if is_leaf(i):
-                i=tree(i,vals)
-            else:
-                return helper(i,vals)
-    return helper(t,vals)
+    if is_leaf(t):
+        return tree(label(t),[tree(x)for x in vals])
+    return tree(label(t),[sprout_leaves(s,vals)for s in branches(t)])
 
 
 def add_chars(w1, w2):
