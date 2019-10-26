@@ -1,0 +1,6 @@
+'make_adder_inc-correct', (0, 70)
+'Card.__init__-correct', (512, 70)
+'Card.power-correct', (1024, 70)
+'Player.__init__-correct', (1536, 70)
+'Player.draw-correct', (2048, 70)
+'Player.play-correct', (2560, 70)
