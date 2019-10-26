@@ -174,6 +174,11 @@ def totals_tree(m):
           2
     """
     "*** YOUR CODE HERE ***"
+    if  is_weight(m):
+        return tree(size(m))
+    else:
+        branches=[totals_tree(end(f(m)))for f in [left,right]]
+        return tree(sum([label(b) for b in branches]),branches)
 
 def replace_leaf(t, old, new):
     """Returns a new tree where every leaf value equal to old has
@@ -205,6 +210,11 @@ def replace_leaf(t, old, new):
     True
     """
     "*** YOUR CODE HERE ***"
+    if  is_leaf(t) and label(t)==old:
+        return tree(new)
+    else:
+        bs=[replace_leaf(b,old,new) for b in branches(t)]
+        return tree(label(t),bs)
 
 def make_fib():
     """Returns a function that returns the next Fibonacci number
@@ -230,6 +240,13 @@ def make_fib():
     True
     """
     "*** YOUR CODE HERE ***"
+    cur,next=0,1
+    def fib():
+        nonlocal cur,next
+        result=cur
+        cur,next=next,cur+next
+        return result
+    return fib
 
 def make_withdraw(balance, password):
     """Return a password-protected withdraw function.
@@ -260,6 +277,19 @@ def make_withdraw(balance, password):
     True
     """
     "*** YOUR CODE HERE ***"
+    attempts = []
+    def withdraw(amount, password_attempt):
+        nonlocal balance
+        if len(attempts) == 3:
+            return 'Your account is locked. Attempts: ' + str(attempts)
+        if password_attempt != password:
+            attempts.append(password_attempt)
+            return 'Incorrect password'
+        if amount > balance:
+            return 'Insufficient funds'
+        balance = balance - amount
+        return balance
+    return withdraw
 
 def make_joint(withdraw, old_password, new_password):
     """Return a password-protected withdraw function that has joint access to
@@ -300,6 +330,14 @@ def make_joint(withdraw, old_password, new_password):
     "Your account is locked. Attempts: ['my', 'secret', 'password']"
     """
     "*** YOUR CODE HERE ***"
+    error = withdraw(0, old_password)
+    if type(error) == str:
+        return error
+    def joint(amount, password_attempt):
+        if password_attempt == new_password:
+            return withdraw(amount, old_password)
+        return withdraw(amount, password_attempt)
+    return joint
 
 
 

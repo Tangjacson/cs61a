@@ -1,3 +1,8 @@
 'taxicab-correct', (0, 70)
 'total_weight-correct', (512, 70)
 'balanced-correct', (1024, 70)
+'replace_leaf-correct', (1536, 70)
+'totals_tree-correct', (2048, 70)
+'make_fib-correct', (2560, 70)
+'make_withdraw-correct', (3072, 70)
+'make_joint-correct', (3584, 70)
