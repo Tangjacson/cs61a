@@ -145,13 +145,15 @@ def acorn_finder(t):
     def finder(branch):
         for i in branch:
             if is_tree(i):
-                return finder(i)
-
+                if not finder(i):
+                    continue
+                else:
+                    return True
             else:
                 if i=='acorn':
                     return True
+                else:continue
         return False
-
     return finder(t)
 
 def sprout_leaves(t, vals):
@@ -188,6 +190,15 @@ def sprout_leaves(t, vals):
           2
     """
     "*** YOUR CODE HERE ***"
+    def helper(t,vals):
+        for i in t:
+            print(i)
+            if is_leaf(i):
+                i=tree(i,vals)
+            else:
+                return helper(i,vals)
+    return helper(t,vals)
+
 
 def add_chars(w1, w2):
     """
@@ -216,6 +227,15 @@ def add_chars(w1, w2):
     True
     """
     "*** YOUR CODE HERE ***"
+    if len(w1)==0 :
+        if len(w2)==0:
+            return ''
+        else:
+            return w2[0]+add_chars(w1,w2[1:])
+    if w2[0]==w1[0]:
+        return add_chars(w1[1:],w2[1:])
+    else:
+        return w2[0]+add_chars(w1,w2[1:])
 
 def add_trees(t1, t2):
     """
@@ -244,7 +264,7 @@ def add_trees(t1, t2):
     4
       6
       4
-    >>> print_tree(add_trees(tree(2, [tree(3, [tree(4), tree(5)])]), \
+    >>> print_tree(add_trees(tree(2, [tree(3, [tree(4), tree(5)])]),
     tree(2, [tree(3, [tree(4)]), tree(5)])))
     4
       6
@@ -253,6 +273,39 @@ def add_trees(t1, t2):
       5
     """
     "*** YOUR CODE HERE ***"
+    if not t1:
+        return t2
+    if not t2:
+        return t1
+    new_label = label(t1) + label(t2)
+    t1_children, t2_children = branches(t1), branches(t2)
+    length_t1, length_t2 = len(t1_children), len(t2_children)
+    if length_t1 < length_t2:
+        t1_children += [None for _ in range(length_t1, length_t2)]
+    elif len(t1_children) > len(t2_children):
+        t2_children += [None for _ in range(length_t2, length_t1)]
+    return tree(new_label, [add_trees(child1, child2) for child1, child2 in zip(t1_children, t2_children)])
+
+    '''
+    if len(t1)==0 and len(t2)==0:
+        return 0
+    if len(t1)==0 or len(t2)==0:
+        if len(t1)>0:
+            return t1
+        else:
+            return t2
+    if is_leaf(label(t1)) and is_leaf(label(t2)):
+        return [label(t1)+label(t2),add_trees(branch(t1),branch(t2))]
+    elif is_tree(label(t1)) and is_tree(label(t2)):
+        return tree(label(label(t1))+label(label(t2)),[add_trees(branch(label(t1)),branch(label(t2))),add_trees(branch(t1),branch(t2))])
+    elif is_tree(label(t1)) and is_leaf(label(t2)):
+        return tree(label(label(t1))+label(t2),[add_trees(branch(label(t1)),branch(label(t2))),add_trees(branch(t1),branch(t2))])
+    else:
+        return tree(label(t1)+label(label(t2)),[add_trees(branch(label(t1)),branch(label(t2))),add_trees(branch(t1),branch(t2))])
+    '''
+
+
+
 
 # Shakespeare and Dictionaries
 def build_successors_table(tokens):

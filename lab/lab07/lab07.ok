@@ -1,0 +1,33 @@
+{
+    "name": "Lab 7",
+    "endpoint": "cal/cs61a/fa19/lab07",
+    "src": [
+        "lab07.py",
+        "tests/link.py",
+        "tests/trees.py"
+    ],
+    "tests": {
+        "tests/link.py": "ok_test",
+        "tests/trees.py": "ok_test",
+        "lab07.py:scale": "doctest",
+        "lab07.py:link_to_list": "doctest",
+        "lab07.py:cumulative_sum": "doctest",
+        "lab07.py:is_bst": "doctest"
+    },
+    "default_tests": [
+        "scale",
+        "link_to_list",
+        "cumulative_sum",
+        "is_bst",
+        "link",
+        "trees"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
