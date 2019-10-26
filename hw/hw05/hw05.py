@@ -21,6 +21,11 @@ def make_counter():
     5
     """
     "*** YOUR CODE HERE ***"
+    dict={}
+    def counter(a):
+        dict[a]=dict.get(a,0)+1
+        return dict[a]
+    return counter
 
 
 class VendingMachine:
@@ -61,6 +66,37 @@ class VendingMachine:
     'Here is your soda.'
     """
     "*** YOUR CODE HERE ***"
+    def __init__(self,product,price):
+        self.product=product
+        self.price=price
+        self.balance=0
+        self.stock=0
+    def vend(self):
+        if self.stock==0:
+            return 'Machine is out of stock.'
+        elif self.balance<self.price:
+            diff=self.price-self.balance
+            return 'You must deposit $'+str(diff)+' more.'
+        else:
+            change=self.balance-self.price
+            self.balance=0
+            self.stock-=1
+            if change==0:
+                return 'Here is your '+self.product+'.'
+            else:
+                return 'Here is your '+self.product+' and $'+str(change)+' change.'
+
+    def restock(self,s):
+        self.stock+=s
+        return 'Current '+self.product+' stock: '+str(self.stock)
+
+
+    def deposit(self,money):
+        if self.stock==0:
+            return 'Machine is out of stock. Here is your $'+str(money)+'.'
+        self.balance+=money
+        return 'Current balance: $'+str(self.balance)
+
 
 def preorder(t):
     """Return a list of the entries in this tree in the order that they
@@ -73,6 +109,13 @@ def preorder(t):
     [2, 4, 6]
     """
     "*** YOUR CODE HERE ***"
+    if t.branches==[]:
+        return [t.label]
+    flattend=[]
+    for i in t.branches:
+        flattend+=preorder(i)
+    return [t.label]+flattend
+
 
 def store_digits(n):
     """Stores the digits of a positive number n in a linked list.
@@ -86,6 +129,12 @@ def store_digits(n):
     Link(8, Link(7, Link(6)))
     """
     "*** YOUR CODE HERE ***"
+    result=Link.empty
+
+    while n>=1:
+        result=Link(n%10,result)
+        n//=10
+    return result
 
 def generate_paths(t, x):
     """Yields all possible paths from the root of t to a node with the label x
@@ -123,10 +172,11 @@ def generate_paths(t, x):
     """
 
     "*** YOUR CODE HERE ***"
-
-    for _______________ in _________________:
-        for _______________ in _________________:
-
+    if t.label==x:
+        yield [x]
+    for b in t.branches:
+        for i in generate_paths(b,x):
+            yield [t.label]+i
             "*** YOUR CODE HERE ***"
 
 
@@ -148,6 +198,13 @@ def remove_all(link , value):
     <0 1>
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty or link.rest is Link.empty:
+        return
+    if link.rest.first==value:
+        link.rest=link.rest.rest
+        remove_all(link,value)
+    else:
+        remove_all(link.rest,value)
 def deep_map(f, link):
     """Return a Link with the same structure as link but with fn mapped over
     its elements. If an element is an instance of a linked list, recursively
@@ -162,6 +219,14 @@ def deep_map(f, link):
     <<2 <4 6> 8> <<10>>>
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return
+    if isinstance(link.first,Link):
+        first=deep_map(f,link.first)
+    else:
+        first=f(link.first)
+    return link(first,deep_map(f,link.rest))
+
 class Mint:
     """A mint creates coins by stamping on years.
 
@@ -199,9 +264,11 @@ class Mint:
 
     def create(self, kind):
         "*** YOUR CODE HERE ***"
+        return kind(self.year)
 
     def update(self):
         "*** YOUR CODE HERE ***"
+        self.year=Mint.current_year
 
 class Coin:
     def __init__(self, year):
@@ -209,6 +276,7 @@ class Coin:
 
     def worth(self):
         "*** YOUR CODE HERE ***"
+        return self.cents+max(0,Mint.current_year-self.year-50)
 
 class Nickel(Coin):
     cents = 5
