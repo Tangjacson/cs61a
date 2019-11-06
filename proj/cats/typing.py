@@ -149,56 +149,21 @@ def swap_diff(start, goal, limit):
 def edit_diff(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
     #assert False, 'Remove this line'
-
-
-    if limit==0: # Fill in the condition
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        if goal=='':
-            if start=='':
-                return 0
+    dp = [[0 for _ in range(len(goal) + 1)] for _ in range(len(start)+1)]
+    for i in range(1, len(start) + 1):
+        dp[i][0] = i
+    for i in range(1, len(goal) + 1):
+        dp[0][i] = i
+    for i in range(1, len(start) + 1):
+        for j in range(1, len(goal) + 1):
+            if start[i-1] == goal[j-1]:
+                dp[i][j] = min([dp[i-1][j] + 1,dp[i][j-1] + 1,dp[i-1][j-1]])
             else:
-                return 1
-        elif start=='':
-            return 1
-        elif start[0]==goal[0]:
-            return edit_diff(start[1:],goal[1:],limit)
-        else:
-            return 1
-        # END
-    elif goal=='' :
-        if start=='':
-            return 0
-        else:
-            start=start[1:]
-            return edit_diff(start,goal,limit-1)+1
-    elif start=='':
-            goal=goal[1:]
-            return edit_diff(start,goal,limit-1)+1
-    elif start[0]==goal[0]: # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        return edit_diff(start[1:],goal[1:],limit)
-        # END
+                dp[i][j] = min([dp[i-1][j], dp[i][j-1], dp[i-1][j-1]]) + 1
+    return dp[-1][-1]
 
-    else:
-        add_diff = goal[0]+start # Fill in these lines
-        #print(add_diff)
-        remove_diff = start[1:]
-        substitute_diff = goal[0]+start[1:]
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        def Accuracy(x,y):
-            n=min(len(x),len(y))
-            return sum([1 for i in range(n) if x[i]==y[i]])/max(len(x),len(y))
-        a=[Accuracy(add_diff,goal),Accuracy(remove_diff,goal),Accuracy(substitute_diff,goal)]
-        max_a=max(a)
-        if a[0]==max_a:
-            return edit_diff(start,goal[1:],limit-1)+1
-        elif a[1]==max_a:
-            return edit_diff(start[1:],goal,limit-1)+1
-        else:
-            return edit_diff(start[1:],goal[1:],limit-1)+1
+
+
         # END
 
 
@@ -221,6 +186,14 @@ def report_progress(typed, prompt, id, send):
     """Send a report of your id and progress so far to the multiplayer server."""
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    a=0
+    for i in range(len(typed)):
+        if typed[i]==prompt[i]:
+            a+=1
+        else:
+            break
+    d=send({'id': id,'progress': a/len(prompt)})
+    return a/len(prompt)
     # END PROBLEM 8
 
 
@@ -242,6 +215,19 @@ def fastest_words(word_times, margin=1e-5):
     assert margin > 0
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    def is_fastest(p,i):
+        t0=0
+        words,t=[],[]
+        wordtimes=word_times[p]
+        for word,wordtime in wordtimes[1:]:
+            t.append(wordtime-t0)
+            t0+=wordtime
+            words.append(word)
+            min_t=min(t)
+        for i in range(len(words)):
+            if wordtime[i]==min_t:
+                return
+    return [[words[i] for i in range(n_words) if is_fastest(p, i)] for p in range(len(word_times))]
     # END PROBLEM 9
 
 

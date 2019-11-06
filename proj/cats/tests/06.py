@@ -8,38 +8,28 @@ test = {
           'code': r"""
           >>> big_limit = 10
           >>> swap_diff("car", "cad", big_limit)
-          52f1b72ba99dddc798bb5cebce0be695
-          # locked
+          1
           >>> swap_diff("this", "that", big_limit)
-          45c27a29bbaeb163dec9a0eaed9c7c9c
-          # locked
+          2
           >>> swap_diff("one", "two", big_limit)
-          91711de69bc1d16e478231c51fac5db8
-          # locked
+          3
           >>> swap_diff("from", "form", big_limit)
-          45c27a29bbaeb163dec9a0eaed9c7c9c
-          # locked
+          2
           >>> swap_diff("awe", "awesome", big_limit)
-          bfdc03a3c261c5dc71255ec79dd5977e
-          # locked
+          4
           >>> swap_diff("someawe", "awesome", big_limit)
-          ca82d3ac444a7724c7a6f8a337e495f5
-          # locked
+          6
           >>> swap_diff("awful", "awesome", big_limit)
-          f29bb7189bc0116caaaf05635899b49b
-          # locked
+          5
           >>> swap_diff("awful", "awesome", 3) > 3
-          f0a7036a7438d73054555da0482ad042
-          # locked
+          True
           >>> swap_diff("awful", "awesome", 4) > 4
-          f0a7036a7438d73054555da0482ad042
-          # locked
+          True
           >>> swap_diff("awful", "awesome", 5) > 5
-          81e16d9126cb46b28abbb0a979cb030a
-          # locked
+          False
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
