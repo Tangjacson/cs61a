@@ -30,6 +30,8 @@ def scale(s, k):
     [2, 4, 6, 8, 10]
     """
     "*** YOUR CODE HERE ***"
+    for i in s:
+        yield i*k
 
 
 # Linked Lists
@@ -44,6 +46,11 @@ def link_to_list(link):
     []
     """
     "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return []
+    else:
+        return [link.first]+link_to_list(link.rest)
+
 
 # Trees
 
@@ -57,6 +64,9 @@ def cumulative_sum(t):
     Tree(16, [Tree(8, [Tree(5)]), Tree(7)])
     """
     "*** YOUR CODE HERE ***"
+    for i in t.branches:
+        cumulative_sum(i)
+    t.label=sum([i.label for i in t.branches])+t.label
 
 def is_bst(t):
     """Returns True if the Tree t has the structure of a valid BST.
