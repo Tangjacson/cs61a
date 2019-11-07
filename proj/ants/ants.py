@@ -234,14 +234,6 @@ class ThrowerAnt(Ant):
             near_place=near_place.entrance
         return None
 
-        '''
-        near_place,curr_range = self.place,0
-        while not(near_place == beehive):
-            if random_or_none(near_place.bees) != None and curr_range >= self.min_range and curr_range <= self.max_range:
-                return random_or_none(near_place.bees)
-            near_place, curr_range = near_place.entrance, curr_range + 1
-        return None
-        '''
         # END Problem 3 and 4
 
     def throw_at(self, target):
