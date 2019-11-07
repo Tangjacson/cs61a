@@ -225,12 +225,23 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
+        near_place=self.place
+        count=0
+        while near_place!=beehive:
+            if random_or_none(near_place.bees)!=None and count >=self.min_range and count<=self.max_range:
+                return random_or_none(near_place.bees)
+            count+=1
+            near_place=near_place.entrance
+        return None
+
+        '''
         near_place,curr_range = self.place,0
         while not(near_place == beehive):
             if random_or_none(near_place.bees) != None and curr_range >= self.min_range and curr_range <= self.max_range:
                 return random_or_none(near_place.bees)
             near_place, curr_range = near_place.entrance, curr_range + 1
         return None
+        '''
         # END Problem 3 and 4
 
     def throw_at(self, target):
