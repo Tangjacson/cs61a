@@ -25,6 +25,8 @@ class Place(object):
         # Phase 1: Add an entrance to the exit
         # BEGIN Problem 2
         "*** YOUR CODE HERE ***"
+        if not exit is None:
+            exit.entrance=self
         # END Problem 2
 
     def add_insect(self, insect):
@@ -133,6 +135,8 @@ class Bee(Insect):
     name = 'Bee'
     damage = 1
     # OVERRIDE CLASS ATTRIBUTES HERE
+    def __init__(self,armor=1):
+        Insect.__init__(self,armor)
 
 
     def sting(self, ant):
@@ -189,6 +193,7 @@ class HarvesterAnt(Ant):
 
     name = 'Harvester'
     implemented = True
+    food_cost=2
     # OVERRIDE CLASS ATTRIBUTES HERE
 
     def action(self, colony):
@@ -198,6 +203,7 @@ class HarvesterAnt(Ant):
         """
         # BEGIN Problem 1
         "*** YOUR CODE HERE ***"
+        colony.food+=1
         # END Problem 1
 
 
@@ -207,6 +213,9 @@ class ThrowerAnt(Ant):
     name = 'Thrower'
     implemented = True
     damage = 1
+    food_cost=3
+    min_range=0
+    max_range=100
     # ADD/OVERRIDE CLASS ATTRIBUTES HERE
 
     def nearest_bee(self, beehive):
@@ -216,7 +225,12 @@ class ThrowerAnt(Ant):
         This method returns None if there is no such Bee (or none in range).
         """
         # BEGIN Problem 3 and 4
-        return random_or_none(self.place.bees)
+        near_place,curr_range = self.place,0
+        while not(near_place == beehive):
+            if random_or_none(near_place.bees) != None and curr_range >= self.min_range and curr_range <= self.max_range:
+                return random_or_none(near_place.bees)
+            near_place, curr_range = near_place.entrance, curr_range + 1
+        return None
         # END Problem 3 and 4
 
     def throw_at(self, target):
@@ -242,18 +256,25 @@ class ShortThrower(ThrowerAnt):
     """A ThrowerAnt that only throws leaves at Bees at most 3 places away."""
 
     name = 'Short'
+    food_cost=2
+    armor=1
+    max_range=3
+
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 4
 
 class LongThrower(ThrowerAnt):
     """A ThrowerAnt that only throws leaves at Bees at least 5 places away."""
 
     name = 'Long'
+    food_cost=2
+    armor=1
+    min_range=5
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 4
-    implemented = False   # Change to True to view in the GUI
+    implemented = True  # Change to True to view in the GUI
     # END Problem 4
 
 class FireAnt(Ant):
