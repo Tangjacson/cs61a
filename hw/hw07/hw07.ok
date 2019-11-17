@@ -1,0 +1,29 @@
+{
+    "name": "Homework 7",
+    "endpoint": "cal/cs61a/fa19/hw07",
+    "src": [
+        "hw07.scm"
+    ],
+    "tests": {
+        "tests/longest-increasing-subsequence.py": "ok_test",
+        "tests/derive-exp.py": "ok_test",
+        "tests/derive-product.py": "ok_test",
+        "tests/derive-sum.py": "ok_test",
+        "tests/make-exp.py": "ok_test"
+    },
+    "default_tests": [
+        "longest-increasing-subsequence",
+        "derive-sum",
+        "derive-product",
+        "make-exp",
+        "derive-exp"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",
+        "analytics",
+        "unlock",
+        "backup"
+    ]
+}

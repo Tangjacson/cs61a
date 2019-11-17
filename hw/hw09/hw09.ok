@@ -1,0 +1,29 @@
+{
+    "name": "Homework 9",
+    "endpoint": "cal/cs61a/fa19/hw09",
+    "src": [
+        "hw09.scm"
+    ],
+    "tests": {
+        "tests/replicate.py": "ok_test",
+        "tests/accumulate.py": "ok_test",
+        "tests/accumulate-tail.py": "ok_test",
+        "tests/multiples_3.py": "ok_test",
+        "tests/nondecreastream.py": "ok_test"
+    },
+    "default_tests": [
+        "replicate",
+        "accumulate",
+        "accumulate-tail",
+        "multiples_3",
+        "nondecreastream"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "unlock",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}
